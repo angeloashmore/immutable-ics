@@ -4,6 +4,7 @@
   "description": "Immutable iCalendar document creation",
   "main": "src/index.js",
   "scripts": {
+    "lint": "standard",
     "test": "npm run lint && mocha"
   },
   "repository": {
@@ -15,5 +16,21 @@
   "bugs": {
     "url": "https://github.com/angeloashmore/immutable-ics/issues"
   },
-  "homepage": "https://github.com/angeloashmore/immutable-ics#readme"
+  "homepage": "https://github.com/angeloashmore/immutable-ics#readme",
+  "dependencies": {
+    "immutable": "facebook/immutable-js#4.0",
+    "left-pad": "^1.1.0",
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-eslint": "^6.1.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "mocha": "^2.5.3",
+    "standard": "^7.1.2"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
 }
