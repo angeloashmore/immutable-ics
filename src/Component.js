@@ -1,18 +1,11 @@
 import { List, Record } from 'immutable'
 import { LINE_SEPARATOR, PREFIX, SUFFIX } from './constants'
+import { Properties } from './index'
 
 export default class Component extends Record({
   components: List,
   properties: List
 }) {
-  prefix () {
-    return `${PREFIX}:${this.constructor.componentName}`
-  }
-
-  suffix () {
-    return `${SUFFIX}:${this.constructor.componentName}`
-  }
-
   pushComponent (component) {
     return this.update('components', v => v.push(component))
   }
@@ -35,11 +28,13 @@ export default class Component extends Record({
   }
 
   toString () {
+    const { componentName } = this.constructor
+
     return [
-      this.prefix(),
+      new Properties[PREFIX]({ value: componentName }),
       ...this.properties,
       ...this.components,
-      this.suffix()
+      new Properties[SUFFIX]({ value: componentName })
     ].join(LINE_SEPARATOR)
   }
 }
