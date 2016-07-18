@@ -2,6 +2,7 @@ import { Map, Record } from 'immutable'
 import { identity, isFunction, isNull, isUndefined } from 'lodash'
 import * as transformers from './transformers'
 import {
+  DEFAULT_VALUE_TYPE,
   DEFAULT_VALUE_TYPES,
   FOLD_REGEX,
   FOLD_SEPARATOR,
@@ -19,7 +20,8 @@ export default class Property extends Record({
 }) {
   getTransformedValue () {
     const valueType = VALUE_TYPES[this.parameters.get('VALUE')] ||
-                      DEFAULT_VALUE_TYPES[this.name]
+                      DEFAULT_VALUE_TYPES[this.name] ||
+                      DEFAULT_VALUE_TYPE
 
     if (isFunction(transformers[valueType])) {
       return transformers[valueType](this) || this.value
