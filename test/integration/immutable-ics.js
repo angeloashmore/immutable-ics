@@ -1,43 +1,49 @@
 /* eslint-env mocha */
 
 import assert from 'assert'
-import { Components, Properties } from '../../src'
+import { Component, Property } from '../../src'
 
-let calendar = new Components.VCALENDAR({
+let calendar = new Component({
+  name: 'VCALENDAR',
   properties: [
-    new Properties.VERSION({ value: 2 })
+    new Property({ name: 'VERSION', value: 2 })
   ]
 })
 
-calendar = calendar.pushProperty(new Properties.PRODID({ value: 'XYZ Corp' }))
+calendar = calendar.pushProperty(new Property({ name: 'PRODID', value: 'XYZ Corp' }))
 
-let event = new Components.VEVENT()
+let event = new Component({ name: 'VEVENT' })
 
-event = event.pushProperty(new Properties.UID({ value: 1 }))
-event = event.pushProperty(new Properties.DTSTAMP({
+event = event.pushProperty(new Property({ name: 'UID', value: 1 }))
+event = event.pushProperty(new Property({
+  name: 'DTSTAMP',
   value: new Date('1991-07-11'),
   parameters: { VALUE: 'DATE' }
 }))
-event = event.pushProperty(new Properties.SUMMARY({ value: 'Birthdate' }))
-event = event.pushProperty(new Properties.DTSTART({
+event = event.pushProperty(new Property({ name: 'SUMMARY', value: 'Birthdate' }))
+event = event.pushProperty(new Property({
+  name: 'DTSTART',
   value: new Date('1991-03-07 07:00:00'),
   parameters: { VALUE: 'DATE-TIME' }
 }))
-event = event.pushProperty(new Properties.DTEND({
+event = event.pushProperty(new Property({
+  name: 'DTEND',
   value: new Date('1991-03-07 19:30:00')
 }))
-event = event.pushProperty(new Properties.ATTENDEE({
+event = event.pushProperty(new Property({
+  name: 'ATTENDEE',
   parameters: {
     CN: 'Sample Company',
     RSVP: 'FALSE:foo@example.com'
   }
 }))
 
-const eventAlarm = new Components.VALARM({
+const eventAlarm = new Component({
+  name: 'VALARM',
   properties: [
-    new Properties.ACTION({ value: 'DISPLAY' }),
-    new Properties.TRIGGER({ value: '-PT12H' }),
-    new Properties.DESCRIPTION({ value: 'Event reminder' })
+    new Property({ name: 'ACTION', value: 'DISPLAY' }),
+    new Property({ name: 'TRIGGER', value: '-PT12H' }),
+    new Property({ name: 'DESCRIPTION', value: 'Event reminder' })
   ]
 })
 
@@ -45,45 +51,53 @@ event = event.pushComponent(eventAlarm)
 
 calendar = calendar.pushComponent(event)
 
-const todo = new Components.VTODO({
+const todo = new Component({
+  name: 'VTODO',
   properties: [
-    new Properties.UID({ value: 1 }),
-    new Properties.DTSTAMP({ value: new Date('2015-07-18 10:00:00') }),
-    new Properties.DUE({ value: new Date('2015-07-19 10:00:00') }),
-    new Properties.SUMMARY({ value: 'To Do (the purpose of creating this long string is to test the 75 character limit per the RFC)' }),
-    new Properties.CATEGORIES({ value: ['WORK', 'FAMILY'] })
+    new Property({ name: 'UID', value: 1 }),
+    new Property({ name: 'DTSTAMP', value: new Date('2015-07-18 10:00:00') }),
+    new Property({ name: 'DUE', value: '20150719T100000' }),
+    new Property({ name: 'SUMMARY', value: 'To Do (the purpose of creating this long string is to test the 75 character limit per the RFC)' }),
+    new Property({ name: 'CATEGORIES', value: ['WORK', 'FAMILY'] })
   ]
 })
 
 calendar = calendar.pushComponent(todo)
 
-const singleInstantiationCalendar = new Components.VCALENDAR({
+const singleInstantiationCalendar = new Component({
+  name: 'VCALENDAR',
   components: [
-    new Components.VEVENT({
+    new Component({
+      name: 'VEVENT',
       components: [
-        new Components.VALARM({
+        new Component({
+          name: 'VALARM',
           properties: [
-            new Properties.ACTION({ value: 'DISPLAY' }),
-            new Properties.TRIGGER({ value: '-PT12H' }),
-            new Properties.DESCRIPTION({ value: 'Event reminder' })
+            new Property({ name: 'ACTION', value: 'DISPLAY' }),
+            new Property({ name: 'TRIGGER', value: '-PT12H' }),
+            new Property({ name: 'DESCRIPTION', value: 'Event reminder' })
           ]
         })
       ],
       properties: [
-        new Properties.UID({ value: 1 }),
-        new Properties.DTSTAMP({
+        new Property({ name: 'UID', value: 1 }),
+        new Property({
+          name: 'DTSTAMP',
           value: new Date('1991-07-11'),
           parameters: { VALUE: 'DATE' }
         }),
-        new Properties.SUMMARY({ value: 'Birthdate' }),
-        new Properties.DTSTART({
+        new Property({ name: 'SUMMARY', value: 'Birthdate' }),
+        new Property({
+          name: 'DTSTART',
           value: new Date('1991-03-07 07:00:00'),
           parameters: { VALUE: 'DATE-TIME' }
         }),
-        new Properties.DTEND({
+        new Property({
+          name: 'DTEND',
           value: new Date('1991-03-07 19:30:00')
         }),
-        new Properties.ATTENDEE({
+        new Property({
+          name: 'ATTENDEE',
           parameters: {
             CN: 'Sample Company',
             RSVP: 'FALSE:foo@example.com'
@@ -91,19 +105,20 @@ const singleInstantiationCalendar = new Components.VCALENDAR({
         })
       ]
     }),
-    new Components.VTODO({
+    new Component({
+      name: 'VTODO',
       properties: [
-        new Properties.UID({ value: 1 }),
-        new Properties.DTSTAMP({ value: new Date('2015-07-18 10:00:00') }),
-        new Properties.DUE({ value: new Date('2015-07-19 10:00:00') }),
-        new Properties.SUMMARY({ value: 'To Do (the purpose of creating this long string is to test the 75 character limit per the RFC)' }),
-        new Properties.CATEGORIES({ value: ['WORK', 'FAMILY'] })
+        new Property({ name: 'UID', value: 1 }),
+        new Property({ name: 'DTSTAMP', value: new Date('2015-07-18 10:00:00') }),
+        new Property({ name: 'DUE', value: '20150719T100000' }),
+        new Property({ name: 'SUMMARY', value: 'To Do (the purpose of creating this long string is to test the 75 character limit per the RFC)' }),
+        new Property({ name: 'CATEGORIES', value: ['WORK', 'FAMILY'] })
       ]
     })
   ],
   properties: [
-    new Properties.VERSION({ value: 2 }),
-    new Properties.PRODID({ value: 'XYZ Corp' })
+    new Property({ name: 'VERSION', value: 2 }),
+    new Property({ name: 'PRODID', value: 'XYZ Corp' })
   ]
 })
 

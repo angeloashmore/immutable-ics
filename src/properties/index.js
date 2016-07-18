@@ -1,5 +1,0 @@
-export DUE from './DUE'
-export DTEND from './DTEND'
-export DTSTAMP from './DTSTAMP'
-export DTSTART from './DTSTART'
-export VERSION from './VERSION'

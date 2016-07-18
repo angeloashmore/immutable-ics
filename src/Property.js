@@ -1,36 +1,38 @@
 import { Map, Record } from 'immutable'
-import { identity, isNull, isUndefined } from 'lodash'
+import { identity, isFunction, isNull, isUndefined } from 'lodash'
+import * as transformers from './transformers'
 import {
+  DEFAULT_VALUE_TYPES,
   FOLD_REGEX,
   FOLD_SEPARATOR,
   PARAMETER_SEPARATOR,
   PARAMETER_KV_SEPARATOR,
-  PROPERTY_KV_SEPARATOR
+  PROPERTY_KV_SEPARATOR,
+  VALUE_TYPES
 } from './constants'
 
 export default class Property extends Record({
+  name: identity,
   parameters: Map,
   transform: (v = true) => Boolean(v),
   value: identity
 }) {
-  propertyName = this.constructor.name
+  getTransformedValue () {
+    const valueType = VALUE_TYPES[this.parameters.get('VALUE')] ||
+                      DEFAULT_VALUE_TYPES[this.name]
 
-  shouldTransformValue () {
-    return this.transform
-  }
-
-  transformValue () {
-    return this
-  }
-
-  transformValueIfNecessary () {
-    return this.shouldTransformValue() ? this.transformValue() : this
+    if (isFunction(transformers[valueType])) {
+      return transformers[valueType](this) || this.value
+    } else {
+      return this.value
+    }
   }
 
   toString () {
-    const { value } = this.transformValueIfNecessary()
+    const value = this.transform ? this.getTransformedValue() : this.value
 
-    let string = this.propertyName
+    // Build the output.
+    let string = this.name
 
     if (this.parameters.size > 0) {
       string += PARAMETER_SEPARATOR +
@@ -44,6 +46,7 @@ export default class Property extends Record({
       string += PROPERTY_KV_SEPARATOR + value
     }
 
-    return string.match(FOLD_REGEX).join(FOLD_SEPARATOR)
+    return string.match(FOLD_REGEX)
+                 .join(FOLD_SEPARATOR)
   }
 }

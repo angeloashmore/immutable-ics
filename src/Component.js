@@ -1,8 +1,10 @@
 import { List, Record } from 'immutable'
+import { identity } from 'lodash'
+import Property from './Property'
 import { LINE_SEPARATOR, PREFIX, SUFFIX } from './constants'
-import { Properties } from './index'
 
 export default class Component extends Record({
+  name: identity,
   components: List,
   properties: List
 }) {
@@ -28,13 +30,11 @@ export default class Component extends Record({
   }
 
   toString () {
-    const { componentName } = this.constructor
-
     return [
-      new Properties[PREFIX]({ value: componentName }),
+      new Property({ name: PREFIX, value: this.name }),
       ...this.properties,
       ...this.components,
-      new Properties[SUFFIX]({ value: componentName })
+      new Property({ name: SUFFIX, value: this.name })
     ].join(LINE_SEPARATOR)
   }
 }
