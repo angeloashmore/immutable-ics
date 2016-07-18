@@ -1,4 +1,4 @@
-import leftpad from 'left-pad'
+import { padStart } from 'lodash'
 
 /**
  * Format a Date object to a valid TIME string.
@@ -7,7 +7,7 @@ import leftpad from 'left-pad'
  * @param {Date} date - Date to format.
  */
 export default (date) => {
-  return leftpad(date.getHours(), 2, 0) +
-         leftpad(date.getMinutes(), 2, 0) +
-         leftpad(date.getSeconds(), 2, 0)
+  return padStart(date.getHours(), 2, 0) +
+         padStart(date.getMinutes(), 2, 0) +
+         padStart(date.getSeconds(), 2, 0)
 }

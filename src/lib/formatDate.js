@@ -1,4 +1,4 @@
-import leftpad from 'left-pad'
+import { padStart } from 'lodash'
 
 /**
  * Format a Date object to a valid DATE string.
@@ -8,6 +8,6 @@ import leftpad from 'left-pad'
  */
 export default (date) => {
   return date.getFullYear() +
-         leftpad(date.getMonth() + 1, 2, 0) +
-         leftpad(date.getDate(), 2, 0)
+         padStart(date.getMonth() + 1, 2, 0) +
+         padStart(date.getDate(), 2, 0)
 }
