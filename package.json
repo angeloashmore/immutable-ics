@@ -29,6 +29,12 @@
     "mocha": "^2.5.3",
     "standard": "^7.1.2"
   },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
   "standard": {
     "parser": "babel-eslint"
   }
