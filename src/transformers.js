@@ -23,6 +23,14 @@ export const FLOAT__FIXED_1 = (...args) => FLOAT(...args).toFixed(1)
 
 export const INTEGER = (value) => Number.parseInt(value)
 
+export const TEXT = (value) => (
+  value.toString()
+       .replace('\\', '\\\\')
+       .replace(',', '\\,')
+       .replace(';', '\\;')
+       .replace('\n', '\\n')
+)
+
 export const TIME = (value) => (
   isDate(value) ? formatTime(removeTimeZoneOffset(value))
                 : value

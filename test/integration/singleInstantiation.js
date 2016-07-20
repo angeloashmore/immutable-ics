@@ -55,6 +55,10 @@ const calendar = new Component({
           name: 'SUMMARY',
           value: 'To Do (the purpose of creating this long string is to test the 75 character limit per the RFC)'
         }),
+        new Property({
+          name: 'DESCRIPTION',
+          value: 'Test character escaping: \n , ; \\'
+        }),
         new Property({ name: 'CATEGORIES', value: ['WORK', 'FAMILY'] })
       ]
     })

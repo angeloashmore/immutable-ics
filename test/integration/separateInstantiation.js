@@ -58,7 +58,13 @@ const todo = new Component({
     new Property({ name: 'UID', value: 1 }),
     new Property({ name: 'DTSTAMP', value: new Date('2015-07-18 10:00:00') }),
     new Property({ name: 'DUE', value: '20150719T100000' }),
-    new Property({ name: 'SUMMARY', value: 'To Do (the purpose of creating this long string is to test the 75 character limit per the RFC)' }),
+    new Property({
+      name: 'SUMMARY',
+      value: 'To Do (the purpose of creating this long string is to test the 75 character limit per the RFC)' }),
+    new Property({
+      name: 'DESCRIPTION',
+      value: 'Test character escaping: \n , ; \\'
+    }),
     new Property({ name: 'CATEGORIES', value: ['WORK', 'FAMILY'] })
   ]
 })

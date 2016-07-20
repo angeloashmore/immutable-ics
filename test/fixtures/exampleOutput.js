@@ -20,6 +20,7 @@ const string = 'BEGIN:VCALENDAR\r\n' +
                'DUE:20150719T100000\r\n' +
                'SUMMARY:To Do (the purpose of creating this long string is to test the 75 c\r\n' +
                ' haracter limit per the RFC)\r\n' +
+               'DESCRIPTION:Test character escaping: \\n \\, \\; \\\\\r\n' +
                'CATEGORIES:WORK,FAMILY\r\n' +
                'END:VTODO\r\n' +
                'END:VCALENDAR'
