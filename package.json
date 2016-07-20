@@ -1,6 +1,6 @@
 {
   "name": "immutable-ics",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Immutable iCalendar document creation",
   "main": "src/index.js",
   "scripts": {
@@ -11,6 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/angeloashmore/immutable-ics.git"
   },
+  "keywords": [
+    "ics",
+    "calendar",
+    "ical",
+    "immutable"
+  ],
   "author": "Angelo Ashmore",
   "license": "ISC",
   "bugs": {
