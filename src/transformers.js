@@ -4,29 +4,26 @@ import formatDateTime from './lib/formatDateTime'
 import formatTime from './lib/formatTime'
 import removeTimeZoneOffset from './lib/removeTimeZoneOffset'
 
-export const BOOLEAN = ({ value }) => value ? 'TRUE' : 'FALSE'
+export const BOOLEAN = (value) => value ? 'TRUE' : 'FALSE'
 
-export const DATE = ({ value }) => {
-  if (isDate(value)) {
-    return formatDate(removeTimeZoneOffset(value))
-  }
-}
+export const DATE = (value) => (
+  isDate(value) ? formatDate(removeTimeZoneOffset(value))
+                : value
+)
 
-export const DATETIME = ({ value }) => {
-  if (isDate(value)) {
-    return formatDateTime(value)
-  }
-}
+export const DATETIME = (value) => (
+  isDate(value) ? formatDateTime(value)
+                : value
+)
 
-export const FLOAT = ({ value }) => Number.parseFloat(value)
+export const FLOAT = (value) => Number.parseFloat(value)
 
 // Special case to force VERSION property to be a float with one decimal place.
-export const FLOAT__FIXED_1 = (property) => FLOAT(property).toFixed(1)
+export const FLOAT__FIXED_1 = (...args) => FLOAT(...args).toFixed(1)
 
-export const INTEGER = ({ value }) => Number.parseInt(value)
+export const INTEGER = (value) => Number.parseInt(value)
 
-export const TIME = ({ value }) => {
-  if (isDate(value)) {
-    return formatTime(removeTimeZoneOffset(value))
-  }
-}
+export const TIME = (value) => (
+  isDate(value) ? formatTime(removeTimeZoneOffset(value))
+                : value
+)

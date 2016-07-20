@@ -1,5 +1,5 @@
 import { Map, Record } from 'immutable'
-import { identity, isFunction, isNull, isUndefined } from 'lodash'
+import { identity, isArray, isFunction, isNull, isUndefined } from 'lodash'
 import * as transformers from './transformers'
 import {
   DEFAULT_VALUE_TYPE,
@@ -23,17 +23,21 @@ export default class Property extends Record({
                       DEFAULT_VALUE_TYPES[this.name] ||
                       DEFAULT_VALUE_TYPE
 
-    if (isFunction(transformers[valueType])) {
-      return transformers[valueType](this) || this.value
-    } else {
+    const transformer = transformers[valueType]
+
+    if (!isFunction(transformer)) {
       return this.value
     }
+
+    if (isArray(this.value)) {
+      return this.value.map((item) => transformer(item, this.parameters))
+                       .join(',')
+    }
+
+    return transformer(this.value, this.parameters)
   }
 
   toString () {
-    const value = this.transform ? this.getTransformedValue() : this.value
-
-    // Build the output.
     let string = this.name
 
     if (this.parameters.size > 0) {
@@ -43,6 +47,8 @@ export default class Property extends Record({
                     .map(([key, value]) => (key + PARAMETER_KV_SEPARATOR + value))
                     .join(PARAMETER_SEPARATOR)
     }
+
+    const value = this.transform ? this.getTransformedValue() : this.value
 
     if (!isNull(value) && !isUndefined(value)) {
       string += PROPERTY_KV_SEPARATOR + value
