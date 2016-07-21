@@ -186,4 +186,4 @@ Immutable's `Record`.
   Get a string representation of the property according to the iCalendar
   specifications.
 
-[0]: /facebook/immutable-js/
+[0]: https://github.com/facebook/immutable-js/
