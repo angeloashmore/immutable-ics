@@ -1,5 +1,9 @@
 import { Map, Record } from 'immutable'
-import { identity, isArray, isFunction, isNull, isUndefined } from 'lodash'
+import identity from 'lodash.identity'
+import isArray from 'lodash.isarray'
+import isFunction from 'lodash.isfunction'
+import isNull from 'lodash.isnull'
+import isUndefined from 'lodash.isundefined'
 import * as transformers from './transformers'
 import {
   DEFAULT_VALUE_TYPE,

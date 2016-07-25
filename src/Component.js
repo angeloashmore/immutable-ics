@@ -1,5 +1,5 @@
 import { List, Record } from 'immutable'
-import { identity } from 'lodash'
+import identity from 'lodash.identity'
 import Property from './Property'
 import { LINE_SEPARATOR, PREFIX, SUFFIX } from './constants'
 
