@@ -25,10 +25,10 @@ export const INTEGER = (value) => Number.parseInt(value)
 
 export const TEXT = (value) => (
   value.toString()
-       .replace('\\', '\\\\')
-       .replace(',', '\\,')
-       .replace(';', '\\;')
-       .replace('\n', '\\n')
+       .replace(/\\/g, '\\\\')
+       .replace(/,/g, '\\,')
+       .replace(/;/g, '\\;')
+       .replace(/\n/g, '\\n')
 )
 
 export const TIME = (value) => (
