@@ -1,12 +1,21 @@
-import { List, Record } from 'immutable'
-import identity from 'lodash.identity'
+import { List, Record, Typed } from 'typed-immutable'
 import Property from './Property'
 import { LINE_SEPARATOR, PREFIX, SUFFIX } from './constants'
 
+Typed.Component = Typed('Component', (value) => (
+  value instanceof Component ? value
+                             : TypeError(`"${value}" is not a Component`)
+))
+
+Typed.Property = Typed('Property', (value) => (
+  value instanceof Property ? value
+                            : TypeError(`"${value}" is not a Property`)
+))
+
 export default class Component extends Record({
-  name: identity,
-  components: List,
-  properties: List
+  name: String,
+  components: List(Typed.Component),
+  properties: List(Typed.Property)
 }) {
   pushComponent (component) {
     return this.update('components', v => v.push(component))

@@ -1,5 +1,4 @@
-import { Map, Record } from 'immutable'
-import identity from 'lodash.identity'
+import { Any, Map, Record } from 'typed-immutable'
 import isArray from 'lodash.isarray'
 import isFunction from 'lodash.isfunction'
 import isNull from 'lodash.isnull'
@@ -17,10 +16,10 @@ import {
 } from './constants'
 
 export default class Property extends Record({
-  name: identity,
-  parameters: Map,
-  transform: (v = true) => Boolean(v),
-  value: identity
+  name: String,
+  parameters: Map(String, Any),
+  transform: Boolean(true),
+  value: Any
 }) {
   getTransformedValue () {
     const valueType = VALUE_TYPES[this.parameters.get('VALUE')] ||

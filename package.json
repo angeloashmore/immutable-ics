@@ -5,8 +5,9 @@
   "main": "build/immutable-ics.js",
   "scripts": {
     "lint": "standard",
-    "test": "npm run lint && mocha",
     "build": "webpack",
+    "pretest": "npm run lint",
+    "test": "mocha",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -26,12 +27,11 @@
   },
   "homepage": "https://github.com/angeloashmore/immutable-ics#readme",
   "dependencies": {
-    "immutable": "facebook/immutable-js#4.0",
-    "lodash.identity": "^3.0.0",
     "lodash.isarray": "^4.0.0",
     "lodash.isfunction": "^3.0.8",
     "lodash.isnull": "^3.0.0",
-    "lodash.isundefined": "^3.0.1"
+    "lodash.isundefined": "^3.0.1",
+    "typed-immutable": "0.0.8"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
