@@ -1,6 +1,7 @@
 # immutable-ics
 
-Immutable iCalendar document creation using [Immutable.js][0].
+Immutable iCalendar document creation using [typed-immutable][0] and
+[Immutable.js][1].
 
 ## Status
 
@@ -26,8 +27,8 @@ import { Component, Property } from 'immutable-ics'
 
 The following modules are available:
 
-* `Component`: Immutable `Record` to build an iCalendar Component
-* `Property`: Immutable `Record` to build an iCalendar Property
+* `Component`: Typed Immutable `Record` to build an iCalendar Component
+* `Property`: Typed Immutable `Record` to build an iCalendar Property
 
 ### Create a component
 
@@ -106,18 +107,18 @@ This string can then be saved to a file, sent to the user, etc.
 An Immutable `Record` with the following properties:
 
 * `name: String`: Name of the component (e.g. "VCALENDAR", "VEVENT")
-* `components: List`: List of `Component` instances
-* `properties: List`: List of `Property` instances
+* `components: List<Component>`: List of `Component` instances
+* `properties: List<Component>`: List of `Property` instances
 
 All methods return a new instance of the component due to its backing on
 Immutable's `Record`.
 
-#### Methods
+#### Extended Methods
 
-* **`Component.constructor({ name: String, components: (List | Array), properties: (List | Array) }): Component`**
+* **`Component.constructor({ name: String, components: (List<Component> | Array<Component>), properties: (List<Property> | Array<Property>) }): Component`**
 
   Instantiate a new `Component` with initial values. `components` and
-  `properties` will be coerced into a `List`.
+  `properties` will be coerced to a `List`.
 
 * **`Component.prototype.pushComponent(component: Component): Component`**
 
@@ -149,16 +150,16 @@ Immutable's `Record`.
 An Immutable `Record` with the following properties:
 
 * `name: String`: Name of the property (e.g. "DTSTART", "SUMMARY")
-* `parameters: Map`: Property parameters (e.g. "VALUE")
-* `transform: Boolean`: Explicit determiner if the value is transformed
+* `parameters: Map<String, Any>`: Property parameters (e.g. "VALUE")
+* `transform: Boolean = true`: Explicit determiner if the value is transformed
 * `value: Any`: Value of the property
 
 All methods return a new instance of the property due to its backing on
 Immutable's `Record`.
 
-#### Methods
+#### Extended Methods
 
-* **`Property.constructor({ name: String, parameters: (Object | Map), transform: Boolean, value: Any }): Property`**
+* **`Property.constructor({ name: String, parameters: (Object | Map<String, Any>), transform: Boolean = true, value: Any }): Property`**
 
   Instantiate a new `Property` with initial values. `parameters` will be coerced
   into a `Map`.
@@ -186,4 +187,5 @@ Immutable's `Record`.
   Get a string representation of the property according to the iCalendar
   specifications.
 
-[0]: https://github.com/facebook/immutable-js/
+[0]: https://github.com/typed-immutable/typed-immutable/
+[1]: https://github.com/facebook/immutable-js/
