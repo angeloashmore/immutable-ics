@@ -108,7 +108,7 @@ An Immutable `Record` with the following properties:
 
 * `name: String`: Name of the component (e.g. "VCALENDAR", "VEVENT")
 * `components: List<Component>`: List of `Component` instances
-* `properties: List<Component>`: List of `Property` instances
+* `properties: List<Property>`: List of `Property` instances
 
 All methods return a new instance of the component due to its backing on
 Immutable's `Record`.
