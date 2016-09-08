@@ -12,6 +12,7 @@ import {
   PARAMETER_SEPARATOR,
   PARAMETER_KV_SEPARATOR,
   PROPERTY_KV_SEPARATOR,
+  VALUE_SEPARATOR,
   VALUE_TYPES
 } from './constants'
 
@@ -34,7 +35,7 @@ export default class Property extends Record({
 
     if (isArray(this.value)) {
       return this.value.map((item) => transformer(item, this.parameters))
-                       .join(',')
+                       .join(VALUE_SEPARATOR)
     }
 
     return transformer(this.value, this.parameters)

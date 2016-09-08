@@ -3,6 +3,7 @@ export const LINE_SEPARATOR = '\r\n'
 export const PARAMETER_SEPARATOR = ';'
 export const PARAMETER_KV_SEPARATOR = '='
 export const PROPERTY_KV_SEPARATOR = ':'
+export const VALUE_SEPARATOR = ','
 
 export const FOLD_REGEX = new RegExp(/[\s\S]{1,75}/g)
 
