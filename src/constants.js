@@ -2,6 +2,7 @@ export const FOLD_SEPARATOR = '\r\n '
 export const LINE_SEPARATOR = '\r\n'
 export const PARAMETER_SEPARATOR = ';'
 export const PARAMETER_KV_SEPARATOR = '='
+export const PARAMETER_VALUE_KEY = 'VALUE'
 export const PROPERTY_KV_SEPARATOR = ':'
 export const VALUE_SEPARATOR = ','
 

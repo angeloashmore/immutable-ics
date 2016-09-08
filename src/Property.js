@@ -11,6 +11,7 @@ import {
   FOLD_SEPARATOR,
   PARAMETER_SEPARATOR,
   PARAMETER_KV_SEPARATOR,
+  PARAMETER_VALUE_KEY,
   PROPERTY_KV_SEPARATOR,
   VALUE_SEPARATOR,
   VALUE_TYPES
@@ -23,7 +24,7 @@ export default class Property extends Record({
   value: Any
 }) {
   getTransformedValue () {
-    const valueType = VALUE_TYPES[this.parameters.get('VALUE')] ||
+    const valueType = VALUE_TYPES[this.parameters.get(PARAMETER_VALUE_KEY)] ||
                       DEFAULT_VALUE_TYPES[this.name] ||
                       DEFAULT_VALUE_TYPE
 
