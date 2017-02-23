@@ -47,12 +47,12 @@ const dtstartProperty = new Property({
 })
 
 calendar = new Component({ name: 'VCALENDAR' })
-calendar = calendar.addProperty(versionProperty)
+calendar = calendar.pushProperty(versionProperty)
 
 event = new Component({ name: 'VEVENT' })
-event = event.addProperty(dtstartProperty)
+event = event.pushProperty(dtstartProperty)
 
-calendar = calendar.addComponent(event)
+calendar = calendar.pushComponent(event)
 ```
 
 Or instantiate everything at once:
