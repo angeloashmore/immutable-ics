@@ -1,4 +1,4 @@
-# immutable-ics
+# immutable-ics 
 
 Immutable iCalendar document creation using [typed-immutable][0] and
 [Immutable.js][1].
