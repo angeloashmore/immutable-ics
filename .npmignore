@@ -1,5 +1,1 @@
-# Dependency directories
-node_modules
-
-# Source
-src
+# Empty file to stop NPM from adding a clone of .gitignore
