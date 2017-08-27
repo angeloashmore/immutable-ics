@@ -1,5 +1,7 @@
 import { Any, Map, Record } from 'typed-immutable'
-import { isFunction, isNull, isUndefined } from 'lodash-es'
+import isFunction from 'lodash.isfunction'
+import isNull from 'lodash.isnull'
+import isUndefined from 'lodash.isundefined'
 import * as transformers from './transformers'
 import {
   DEFAULT_VALUE_TYPE,

@@ -1,4 +1,4 @@
-import { padStart } from 'lodash-es'
+import padStart from 'lodash.padstart'
 
 /**
  * Format a Date object to a valid DATE string.

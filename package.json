@@ -1,14 +1,14 @@
 {
   "name": "immutable-ics",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Immutable iCalendar document creation",
   "main": "dist/immutable-ics.cjs.js",
   "module": "dist/immutable-ics.esm.js",
   "browser": "dist/immutable-ics.umd.js",
   "scripts": {
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'test/**/*.js'",
-    "build": "rollup -c",
-    "test": "mocha",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'test/**/*.js' 'rollup.config.js'",
+    "test": "NODE_ENV=test mocha",
+    "build": "NODE_ENV=production rollup -c",
     "prepublish": "npm run build"
   },
   "repository": {
@@ -28,7 +28,11 @@
   },
   "homepage": "https://github.com/angeloashmore/immutable-ics#readme",
   "dependencies": {
-    "lodash-es": "^4.17.4",
+    "lodash.isdate": "^4.0.1",
+    "lodash.isfunction": "^3.0.8",
+    "lodash.isnull": "^3.0.0",
+    "lodash.isundefined": "^3.0.1",
+    "lodash.padstart": "^4.6.1",
     "typed-immutable": "0.0.8"
   },
   "devDependencies": {

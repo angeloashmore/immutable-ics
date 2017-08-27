@@ -1,4 +1,4 @@
-import { isDate } from 'lodash-es'
+import isDate from 'lodash.isdate'
 import formatDate from './lib/formatDate'
 import formatDateTime from './lib/formatDateTime'
 import formatTime from './lib/formatTime'

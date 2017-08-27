@@ -1,14 +1,24 @@
 {
-  "presets": [
-    [
-      "env",
-      {
-        "modules": false
-      }
-    ]
-  ],
-  "plugins": [
-    "external-helpers",
-    "transform-export-extensions"
-  ]
+  "env": {
+    "test": {
+      "presets": ["env"],
+      "plugins": [
+        "transform-export-extensions"
+      ]
+    },
+    "production": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": false
+          }
+        ]
+      ],
+      "plugins": [
+        "external-helpers",
+        "transform-export-extensions"
+      ]
+    }
+  }
 }

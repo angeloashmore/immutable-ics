@@ -9,7 +9,7 @@ export default [
     input: './src/index.js',
     output: {
       file: pkg.browser,
-      format: 'umd'
+      format: 'umd',
     },
     name: 'immutable-ics',
     sourcemap: true,
@@ -17,37 +17,41 @@ export default [
       resolve(),
       commonjs({
         namedExports: {
-          'node_modules/typed-immutable/lib/index.js': ['Typed', 'Record', 'List', 'Map', 'Any']
-        }
+          'node_modules/typed-immutable/lib/index.js': [
+            'Typed',
+            'Record',
+            'List',
+            'Map',
+            'Any',
+          ],
+        },
       }),
-      babel({
-        exclude: 'node_modules/**'
-      }),
-    ]
+      babel(),
+    ],
   },
 
   // CommonJS (for Node) and ES module (for bundlers) build.
   {
     input: './src/index.js',
     external: [
+      'lodash.isdate',
+      'lodash.isfunction',
+      'lodash.isnull',
+      'lodash.isundefined',
+      'lodash.padstart',
       'typed-immutable',
-      'lodash-es'
     ],
     output: [
       {
         file: pkg.main,
-        format: 'cjs'
+        format: 'cjs',
       },
       {
         file: pkg.module,
-        format: 'es'
-      }
+        format: 'es',
+      },
     ],
     sourcemap: true,
-    plugins: [
-      babel({
-        exclude: 'node_modules/**'
-      }),
-    ]
-  }
+    plugins: [babel()],
+  },
 ]
