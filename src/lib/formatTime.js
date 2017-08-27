@@ -1,4 +1,4 @@
-import { padStart } from 'lodash'
+import { padStart } from 'lodash-es'
 
 /**
  * Format a Date object to a valid TIME string.
