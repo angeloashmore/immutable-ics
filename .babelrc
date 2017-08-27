@@ -1,0 +1,25 @@
+{
+  "env": {
+    "test": {
+      "presets": ["env"],
+      "plugins": [
+        "transform-export-extensions"
+      ]
+    },
+    "production": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": false
+          }
+        ],
+        "minify"
+      ],
+      "plugins": [
+        "external-helpers",
+        "transform-export-extensions"
+      ]
+    }
+  }
+}

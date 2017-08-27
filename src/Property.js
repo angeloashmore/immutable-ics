@@ -13,19 +13,20 @@ import {
   PARAMETER_VALUE_KEY,
   PROPERTY_KV_SEPARATOR,
   VALUE_SEPARATOR,
-  VALUE_TYPES
+  VALUE_TYPES,
 } from './constants'
 
 export default class Property extends Record({
   name: String,
   parameters: Map(String, Any),
   transform: Boolean(true),
-  value: Any
+  value: Any,
 }) {
-  getTransformedValue () {
-    const valueType = VALUE_TYPES[this.parameters.get(PARAMETER_VALUE_KEY)] ||
-                      DEFAULT_VALUE_TYPES[this.name] ||
-                      DEFAULT_VALUE_TYPE
+  getTransformedValue() {
+    const valueType =
+      VALUE_TYPES[this.parameters.get(PARAMETER_VALUE_KEY)] ||
+      DEFAULT_VALUE_TYPES[this.name] ||
+      DEFAULT_VALUE_TYPE
 
     const transformer = transformers[valueType]
 
@@ -34,22 +35,24 @@ export default class Property extends Record({
     }
 
     if (Array.isArray(this.value)) {
-      return this.value.map((item) => transformer(item, this.parameters))
-                       .join(VALUE_SEPARATOR)
+      return this.value
+        .map(item => transformer(item, this.parameters))
+        .join(VALUE_SEPARATOR)
     }
 
     return transformer(this.value, this.parameters)
   }
 
-  toString () {
+  toString() {
     let string = this.name
 
     if (this.parameters.size > 0) {
-      string += PARAMETER_SEPARATOR +
-                this.parameters
-                    .entrySeq()
-                    .map(([key, value]) => (key + PARAMETER_KV_SEPARATOR + value))
-                    .join(PARAMETER_SEPARATOR)
+      string +=
+        PARAMETER_SEPARATOR +
+        this.parameters
+          .entrySeq()
+          .map(([key, value]) => key + PARAMETER_KV_SEPARATOR + value)
+          .join(PARAMETER_SEPARATOR)
     }
 
     const value = this.transform ? this.getTransformedValue() : this.value
@@ -58,7 +61,6 @@ export default class Property extends Record({
       string += PROPERTY_KV_SEPARATOR + value
     }
 
-    return string.match(FOLD_REGEX)
-                 .join(FOLD_SEPARATOR)
+    return string.match(FOLD_REGEX).join(FOLD_SEPARATOR)
   }
 }

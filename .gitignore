@@ -1,8 +1,3 @@
-# Logs
 *.log
-
-# Dependency directories
 node_modules
-
-# Build
-build
+dist
