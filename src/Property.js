@@ -1,5 +1,4 @@
 import { Any, Map, Record } from 'typed-immutable'
-import isArray from 'lodash.isarray'
 import isFunction from 'lodash.isfunction'
 import isNull from 'lodash.isnull'
 import isUndefined from 'lodash.isundefined'
@@ -34,7 +33,7 @@ export default class Property extends Record({
       return this.value
     }
 
-    if (isArray(this.value)) {
+    if (Array.isArray(this.value)) {
       return this.value.map((item) => transformer(item, this.parameters))
                        .join(VALUE_SEPARATOR)
     }
