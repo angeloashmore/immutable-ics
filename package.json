@@ -5,9 +5,7 @@
   "main": "build/immutable-ics.js",
   "scripts": {
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
-    "lint": "standard",
     "build": "webpack",
-    "pretest": "npm run lint",
     "test": "mocha",
     "prepublish": "npm run build"
   },
@@ -41,7 +39,6 @@
     "babel-preset-stage-0": "^6.5.0",
     "mocha": "^3.5.0",
     "prettier": "^1.5.3",
-    "standard": "^7.1.2",
     "webpack": "^1.13.1"
   },
   "babel": {
