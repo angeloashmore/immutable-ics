@@ -13,7 +13,8 @@
           {
             "modules": false
           }
-        ]
+        ],
+        "minify"
       ],
       "plugins": [
         "external-helpers",
