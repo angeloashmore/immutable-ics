@@ -7,6 +7,6 @@ import formatTime from './formatTime'
  * @private
  * @param {Date} date - Date to format.
  */
-export default (date) => {
+export default date => {
   return `${formatDate(date)}T${formatTime(date)}`
 }
