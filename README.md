@@ -7,7 +7,6 @@ Immutable iCalendar document creation using [typed-immutable][0] and
 
 [![npm version](https://badge.fury.io/js/immutable-ics.svg)](http://badge.fury.io/js/immutable-ics)
 [![Build Status](https://secure.travis-ci.org/angeloashmore/immutable-ics.svg?branch=master)](http://travis-ci.org/angeloashmore/immutable-ics?branch=master)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
 ## Installation
 
